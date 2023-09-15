@@ -1086,9 +1086,10 @@ function do_duizhan1(renshu) {
                 que_img.recycle();
                 break
             } else {
-                fError("未识别出题目，可能被禁止截图或无障碍失效");
-                img.recycle();
-                que_img.recycle();
+                fError("未识别出选项，随机选择");
+        className("android.widget.RadioButton").findOnce(random(0, radio_num - 1)).parent().click();
+        err_flag = false;
+        continue;
             }
         }
         if (renshu == 0) {
@@ -2906,9 +2907,10 @@ function do_siren() {
                 que_img.recycle();
                 break
             } else {
-                fError("未识别出题目，可能被禁止截图或无障碍失效");
-                img.recycle();
-                que_img.recycle();
+                fError("未识别出选项，随机选择");
+        className("android.widget.RadioButton").findOnce(random(0, radio_num - 1)).parent().click();
+        err_flag = false;
+        continue;
             }
         }
         
@@ -3339,9 +3341,10 @@ while (true) {
             que_img.recycle();
             break
         } else {
-            fError("未识别出题目，可能被禁止截图或无障碍失效");
-            img.recycle();
-            que_img.recycle();
+            fError("未识别出选项，随机选择");
+        className("android.widget.RadioButton").findOnce(random(0, radio_num - 1)).parent().click();
+        err_flag = false;
+        continue;
         }
     }
     //if (renshu == 0) {

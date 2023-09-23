@@ -645,7 +645,7 @@ function startDownload(url) {
 function getScript(choice) {
     let url_prefix = [
         
-        'https://github.com/Ren3030/QG-Learning-new-ideas/blob/main/',
+        'https://gh-proxy.com/https://github.com/Ren3030/QG-Learning-new-ideas/blob/main/',
     ];
     for (var i = 0; i < url_prefix.length; i++) {
         try {

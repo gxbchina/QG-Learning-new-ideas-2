@@ -122,20 +122,20 @@ sleep(delay_time);
 var storage = storages.create('songgedodo');
 // 脚本版本号
 var last_version = "V12.0";
-var engine_version = "V12.6";
-var newest_version = "V12.6";
+var engine_version = "V12.7";
+var newest_version = "V12.7";
 if (storage.get(engine_version, true)) {
     storage.remove(last_version);
-        let gengxin_rows = "脚本有风险，仅供学习交流;更新内容：;1.自启动强国改为手动打开强国app防检测，;2.趣味答题已修复，点击答案选项增加了随机延时，;3.赞助交流群：821100546，;脚本测试环境：强国V2.46.0；（点击取消不再提示）".split(";");
+        let gengxin_rows = "脚本有风险，仅供学习交流;更新内容：;1.自启动强国，;2.趣味答题已修复，点击答案选项增加了随机延时，;3.赞助交流群：821100546，;脚本测试环境：强国V2.46.0；（点击取消不再提示）".split(";");
     let is_show = confirm(engine_version + "版更新内容", gengxin_rows.join("\n"));
     if (!is_show) {
         storage.put(engine_version, false);
     }
 }
 var w = fInit();
-// console.setTitle("学习助手");
+// console.setTitle("学习新思想");
 // console.show();
-fInfo("学习心思想Pro" + newest_version + "脚本初始化");
+fInfo("学习新思想Pro" + newest_version + "脚本初始化");
 // 初始化宽高
 var [device_w, device_h] = init_wh();
 // log("fina:", device_w, device_h);
@@ -203,7 +203,7 @@ try {
     dati_tiku = get_tiku_by_ct('https://webapi.ctfile.com/get_file_url.php?uid=35157972&fid=555754562&file_chk=94c3c662ba28f583d2128a1eb9d78af4&app=0&acheck=2&rd=0.14725283060014105');
 }
 // 设置资源保存路径
-files.createWithDirs("/sdcard/学习心思想/");
+files.createWithDirs("/sdcard/学习新思想/");
 // 调整音量
 if (yl_on) {
     fInfo("设置媒体音量");
@@ -228,21 +228,33 @@ var nolocate_thread = threads.start(function() {
     sleep(1000);
     text("暂不开启").findOne().click();
     fInfo("已关闭定位");
-});
-fInfo("请手动打开进去学习强国主页");
-sleep(2000);
-fInfo("请手动打开进去学习强国主页");
-sleep(2000);
-fInfo("请手动打开进去学习强国主页");
-sleep(2000);
-fInfo("请手动打开进去学习强国主页");
-sleep(2000);
-fInfo("请手动打开进去学习强国主页");
-sleep(2000);
-id("comm_head_xuexi_mine").waitFor()
 
-//app.launchApp('学习强国');
-sleep(3000);
+
+});
+
+// while (true) {
+//     // 检测是否打开学习强国主页
+//     var xuexi_mine = id("comm_head_xuexi_mine").exists();
+  
+//     // 判断是否找到了控件
+//     if (xuexi_mine) {
+//       // 找到了控件，结束循环
+//       fInfo("进入主页");
+//       break;
+//     } else {
+    
+//         fInfo("没有进入强国主页")
+//         fInfo("请手动打开进去学习强国主页");
+//         sleep(1500);
+//       // 没找到控件，进入进吧页面
+//       fClear();
+     
+//     }
+//     sleep(1000);
+    
+//   }
+app.launchApp('学习强国');
+sleep(1000);
 //sleep(2000);
 // console.hide();
 // 命令行方式启动，似乎需要root
@@ -911,7 +923,7 @@ function do_tiaozhan() {
 
 // 模拟随机时间15-20秒，后期可以用户自定义
 function ran_sleep1() {
-return sleep(random(15000, 20000));
+return sleep(random(3000, 5000));
 }
 
 /********双人、四人赛*********/
@@ -1086,10 +1098,9 @@ function do_duizhan1(renshu) {
                 que_img.recycle();
                 break
             } else {
-                fError("未识别出选项，随机选择");
-        className("android.widget.RadioButton").findOnce(random(0, radio_num - 1)).parent().click();
-        err_flag = false;
-        continue;
+                fError("未识别出题目，可能被禁止截图或无障碍失效");
+                img.recycle();
+                que_img.recycle();
             }
         }
         if (renshu == 0) {
@@ -2289,7 +2300,7 @@ function send_pushplus(token, sign_list) {
     content_str += '</div>' + style_str;
     let r = http.postJson("http://www.pushplus.plus/send", {
         token: token,
-        title: "学习心思想：" + name,
+        title: "学习新思想：" + name,
         content: content_str + "</div><style>.item{height:1.5em;line-height:1.5em;}.item span{display:inline-block;padding-left:0.4em;}.item .bar{width:100px;height:10px;background-color:#ddd;border-radius:5px;display:inline-block;}.item .bar div{height:10px;background-color:#ed4e45;border-radius:5px;}</style>",
         template: "markdown",
     });
@@ -2314,7 +2325,7 @@ function send_email(email) {
         action: "SENDTO"
     });
     data.setData(app.parseUri("mailto:" + e_addr));
-    data.putExtra(Intent.EXTRA_SUBJECT, "学习心思想：" + name);
+    data.putExtra(Intent.EXTRA_SUBJECT, "学习新思想：" + name);
     data.putExtra(Intent.EXTRA_TEXT, content);
     app.startActivity(data);
     return true;
@@ -2446,7 +2457,7 @@ function fInit() {
         <card cardCornerRadius='8dp' alpha="0.8">
             <vertical>
                 <horizontal bg='#FF000000' padding='10 5'>
-                    <text id='version' textColor="#FFFFFF" textSize="18dip">学习心思想+</text>
+                    <text id='version' textColor="#FFFFFF" textSize="18dip">学习新思想+</text>
                     <text id='title' h="*" textColor="#FFFFFF" textSize="13dip" layout_weight="1" gravity="top|right">
                     </text>
                 </horizontal>
@@ -2463,7 +2474,7 @@ function fInit() {
     );
     ui.run(function() {
         //w.title.setFocusable(true);
-        w.version.setText("学习心思想+" + newest_version);
+        w.version.setText("学习新思想+" + newest_version);
     });
     w.setSize(720, -2);
     w.setPosition(10, 10);
@@ -2907,10 +2918,9 @@ function do_siren() {
                 que_img.recycle();
                 break
             } else {
-                fError("未识别出选项，随机选择");
-        className("android.widget.RadioButton").findOnce(random(0, radio_num - 1)).parent().click();
-        err_flag = false;
-        continue;
+                fError("未识别出题目，可能被禁止截图或无障碍失效");
+                img.recycle();
+                que_img.recycle();
             }
         }
         
@@ -3341,10 +3351,9 @@ while (true) {
             que_img.recycle();
             break
         } else {
-            fError("未识别出选项，随机选择");
-        className("android.widget.RadioButton").findOnce(random(0, radio_num - 1)).parent().click();
-        err_flag = false;
-        continue;
+            fError("未识别出题目，可能被禁止截图或无障碍失效");
+            img.recycle();
+            que_img.recycle();
         }
     }
     //if (renshu == 0) {

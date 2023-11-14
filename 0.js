@@ -3263,21 +3263,21 @@ while (true) {
         //fTips("题号过渡消失");
     } else if (!err_flag) {
         err_flag = true;
+        // 检测是否结束并退出
         if (text("继续挑战").exists()) {
+          sleep(1000);
+          let tz_click = text("继续挑战").findOne().click();
+          fInfo("点击继续挑战:"+tz_click);
+          sleep(1500);
+          back();
+          if (renshu == 2) {
             sleep(1000);
-            let tz_click = text("继续挑战").findOne().click();
-            fInfo("点击继续挑战:" + tz_click);
-            sleep(1500);
-            back();
-            if (renshu == 2) {
-                sleep(1000);
-                fInfo("查找退出按钮");
-                if (fast_mode) {
-                    winReshow();
-                }
-                var exit_click = text("退出").findOne().click();
-                fInfo("点击退出:" + exit_click);
-            }
+            fInfo("查找退出按钮");
+            if (fast_mode) { winReshow(); }
+            var exit_click = text("退出").findOne().click();
+            fInfo("点击退出:"+exit_click);
+          }
+          sleep
             sleep(1000);
             text("登录").waitFor();
             ran_sleep();

@@ -3270,18 +3270,16 @@ while (true) {
           fInfo("点击继续挑战:"+tz_click);
           sleep(1500);
           back();
-          if (renshu == 2) {
-            sleep(1000);
-            fInfo("查找退出按钮");
-            if (fast_mode) { winReshow(); }
-            var exit_click = text("退出").findOne().click();
-            fInfo("点击退出:"+exit_click);
-          }
+          sleep(1000);
+          fInfo("查找退出按钮");
+        if (fast_mode) { winReshow(); }
+          var exit_click = text("退出").findOne().click();
+          fInfo("点击退出:"+exit_click);
           sleep
-            sleep(1000);
-            text("登录").waitFor();
-            ran_sleep();
-            return true;
+          sleep(1000);
+          text("登录").waitFor();
+          ran_sleep();
+          return true;
         }
     }
     let listview = className("android.widget.ListView").findOne(1000);

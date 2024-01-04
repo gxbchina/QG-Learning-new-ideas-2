@@ -2680,7 +2680,7 @@ function xxqg(userinfo) {
   }
   //随机答题部分
   // 导入文章、视听、本地3个执行函数
-  var funcs = [video, article, local];
+  var funcs = [video, article];
   // 随机打乱函数顺序
   shuffle(funcs);
   fInfo("***文章、视听、本地***");

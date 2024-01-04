@@ -166,9 +166,9 @@ sleep(delay_time);//暂停3秒
 /*****************更新内容弹窗部分*****************/
 var storage = storages.create('xklong');
 // 脚本版本号
-var last_version = "V2.0";
-var engine_version = "V2.6";
-var newest_version = "V2.6";
+var last_version = "V12.0";
+var engine_version = "V12.6";
+var newest_version = "V12.6";
 if (storage.get(engine_version, true)) {
   storage.remove(last_version);
   let gengxin_rows = "脚本有风险，仅供学习交流;更新内容：;1.更换稳定代理网站;2.增加优化防检测模块文章、视听、本地随机任务;BUG可提交给机器人;脚本测试环境：强国V2.48.0;（点击取消不再提示）".split(";");

@@ -299,7 +299,7 @@ function do_shipin() {
   // press(v.centerX() + random(-7, 8), v.centerY() + random(-7, 8) - 50, random(130, 188));
   // fInfo('点击视频');
   
-clickSel( textMatches(/\d+:\d+/))
+clickSel(  textMatches(/\d+:\d+/).boundsInside(500,100,device.width,device.height))
   sleep(2500);
   //video_list.child(1).child(1).child(0).click();
   text("分享").waitFor();
@@ -432,7 +432,7 @@ function do_wenzhang() {
   
   log(old_wen)
   log(old_wen)
-  let wen_box_slt = className("android.view.ViewGroup").depth(5).filter(function (l) {
+  let wen_box_slt = className("android.view.ViewGroup").filter(function (l) {
     let title = l.findOne(idContains("general_card_title_id"));
     let image = l.findOne(idContains("general_card_image_id"));
     let pic_num = l.findOne(idContains("st_feeds_card_mask_pic_num"));

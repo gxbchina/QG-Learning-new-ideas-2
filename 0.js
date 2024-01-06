@@ -1573,9 +1573,9 @@ function do_exec(type) {
   /******************单选题*******************/
   if (textStartsWith("单选题").exists()) {
     // 获取题目
-    //let que_txt = className("android.view.View").depth(10).findOnce(1).text();
+    let que_txt = className("android.view.View").depth(10).findOnce(1).text();
     // 上面被专项答题影响了22、23层的元素数，只能通过其他层定位
-    let que_txt = className("android.view.View").depth(11).findOnce(1).parent().parent().child(1).text();
+    //let que_txt = className("android.view.View").depth(11).findOnce(1).parent().parent().child(1).text();
     log(que_txt);
     var ans = get_ans_by_re(que_txt);
     if (ans && depth(26).text(ans).exists()) {
@@ -1707,9 +1707,9 @@ function do_exec(type) {
   /******************多选题*******************/
   else if (textStartsWith("多选题").exists()) {
     // 获取题目
-    //let que_txt = className("android.view.View").depth(10).findOnce(1).text();
+    let que_txt = className("android.view.View").depth(10).findOnce(1).text();
     // 上面被专项答题影响了22、23层的元素数，只能通过其他层定位
-    let que_txt = className("android.view.View").depth(11).findOnce(1).parent().parent().child(1).text();
+    //let que_txt = className("android.view.View").depth(11).findOnce(1).parent().parent().child(1).text();
     log(que_txt);
     // 这里匹配出全部挖空
     let reg1 = /\s{3,}/g;

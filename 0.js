@@ -2927,8 +2927,49 @@ if (noverify_thread.isAlive()) {
 //GoogleOcr配置
 function google_ocr_api(img) {
   console.log('GoogleMLKit文字识别中');
-  let list = googleOcr.detect(img); // 识别文字，并得到results
+  let list = JSON.parse(JSON.stringify(gmlkit.ocr(img,"zh").toArray(3))); // 识别文字，并得到results
   let eps = 30; // 坐标误差
+  for (
+      var i = 0; i < list.length; i++ // 选择排序对上下排序,复杂度O(N²)但一般list的长度较短只需几十次运算
+  ) {
+      for (var j = i + 1; j < list.length; j++) {
+          if (list[i]['bounds']['bottom'] > list[j]['bounds']['bottom']) {
+              var tmp = list[i];
+              list[i] = list[j];
+              list[j] = tmp;
+          }
+      }
+  }
+
+  for (
+      var i = 0; i < list.length; i++ // 在上下排序完成后，进行左右排序
+  ) {
+      for (var j = i + 1; j < list.length; j++) {
+          // 由于上下坐标并不绝对，采用误差eps
+          if (
+              Math.abs(list[i]['bounds']['bottom'] - list[j]['bounds']['bottom']) <
+              eps &&
+              list[i]['bounds']['left'] > list[j]['bounds']['left']
+          ) {
+              var tmp = list[i];
+              list[i] = list[j];
+              list[j] = tmp;
+          }
+      }
+  }
+  let res = '';
+  for (var i = 0; i < list.length; i++) {
+      res += list[i]['text'];
+  }
+  list = null;
+  return res;
+}
+
+function paddle_ocr_api() {
+  console.log('PaddleOCR文字识别中');
+  let list = JSON.parse(JSON.stringify(paddle.ocr(arguments[0]))); // 识别文字，并得到results
+  let eps = 30; // 坐标误差
+  if (arguments.length >= 2) eps = arguments[1];
   for (
     var i = 0; i < list.length; i++ // 选择排序对上下排序,复杂度O(N²)但一般list的长度较短只需几十次运算
   ) {
@@ -2964,6 +3005,8 @@ function google_ocr_api(img) {
   list = null;
   return res;
 }
+
+
 /*****************结束后配置*****************/
 //console.show();
 // console.clear();

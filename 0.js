@@ -225,7 +225,7 @@ function do_pinglun() {
   while (true) {
     fClear();
     fInfo("尝试点击title:" + id("general_card_title_id").findOnce(i).text());
-    real_click(id("general_card_title_id").findOnce(i).parent().parent());
+    clickSel(id("general_card_title_id").findOnce(i).parent().parent());
     log("等待加载");
     idContains("image-text-content").waitFor();
     log("查找评论框");

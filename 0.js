@@ -1178,7 +1178,7 @@ function do_duizhan1(renshu) {
     if (ocr_choice == 0) {
       // 排序顺序
       //     console.time('选项识别1');
-      let x_results = googleOcr.detect(img);
+      let x_results = JSON.parse(JSON.stringify(gmlkit.ocr(img, "zh").toArray(3)));
       allx_txt = ocr_rslt_to_txt(x_results).replace(/\s+/g, "");
       //     console.timeEnd('选项识别1');
     } else if (ocr_choice == 1) {
@@ -1542,9 +1542,9 @@ function do_bendi() {
   }
   //let banner = className("android.support.v7.widget.RecyclerView").findOne();
   let banner = classNameContains("RecyclerView").findOne();
-  let txt = banner.child(0).child(1).text();
+  banner.findOne(text("北京学习平台"));
+  //let txt = banner.child(0).child(1).text();
   banner.child(0).click();
-  className("android.widget.TextView").depth(11).text(txt).waitFor();
   sleep(1500);
   back();
   ran_sleep();
@@ -2600,7 +2600,7 @@ function xxqg(userinfo) {
   }
   //随机答题部分
   // 导入文章、视听、本地3个执行函数
-  var funcs = [video, article];
+  var funcs = [video, article, local];
   // 随机打乱函数顺序
   shuffle(funcs);
   fInfo("***文章、视听、本地***");
@@ -2622,7 +2622,6 @@ function xxqg(userinfo) {
     while (currentIndex !== 0) {
       randomIndex = Math.floor(Math.random() * currentIndex);
       currentIndex -= 1;
-
       temporaryValue = array[currentIndex];
       array[currentIndex] = array[randomIndex];
       array[randomIndex] = temporaryValue;
@@ -2844,7 +2843,7 @@ if (multifly && zhanghao) {
 if (noverify_thread.isAlive()) {
   noverify_thread.interrupt();
 }
-//GoogleOcr配置
+
 function google_ocr_api(img) {
   console.log('GoogleMLKit文字识别中');
   let list = JSON.parse(JSON.stringify(gmlkit.ocr(img,"zh").toArray(3))); // 识别文字，并得到results
@@ -2925,7 +2924,6 @@ function paddle_ocr_api() {
   list = null;
   return res;
 }
-
 
 /*****************结束后配置*****************/
 //console.show();

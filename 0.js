@@ -224,8 +224,9 @@ function do_pinglun() {
   let text_edit = text("欢迎发表你的观点");
   while (true) {
     fClear();
-    fInfo("尝试点击title:" + id("general_card_title_id").findOnce(i).text());
-    clickSel(id("general_card_title_id").findOnce(i).parent().parent());
+    let pl = id("general_card_title_id").findOnce(i).text();
+    fInfo("尝试点击:" + pl);
+    clickSel (id("general_card_title_id").text(pl));
     log("等待加载");
     idContains("image-text-content").waitFor();
     log("查找评论框");

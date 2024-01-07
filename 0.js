@@ -1429,108 +1429,383 @@ function dacuo(renshu) {
 }
 
 /********订阅*********/
+// function do_dingyue() {
+//   entry_jifen_project("订阅");
+//   fSet("title", "订阅…");
+//   fClear();
+//   let tab1 = descContains("Tab").findOne(9000);
+//   if (!tab1) {
+//     back();
+//     text("登录").waitFor();
+//     return false
+//   }
+//   let zuo1 = descContains("上新").findOne(9000);
+//   if (!zuo1) {
+//     back();
+//     text("登录").waitFor();
+//     return false
+//   }
+//   // 上方标签
+//   let tab_clt = descContains("Tab").untilFind();
+//   let total_click = 0;
+//   for (let tab of tab_clt) {
+//     tab.click();
+//     sleep(500);
+//     // 左方分类
+//     let zuo_clt = className("android.view.View").depth(14).findOne().children();
+//     for (let zuo of zuo_clt) {
+//       if (dingyue_dao) {
+//         zuo = zuo_clt[zuo_clt.length - 1];
+//       }
+//       zuo.click();
+//       sleep(500);
+//       // 右方列表
+//       className("android.view.View").depth(14).waitFor();
+//       let you_clt = className("android.view.View").depth(14).findOnce(1);
+//       let last_desc = "";
+//       while (you_clt) {
+//         //let img = captureScreen();
+//         // 订阅按钮集合
+//         //fInfo("查找订阅集合");
+//         let dingyue_clt = className("android.widget.ImageView").indexInParent(2).untilFind();
+//         try {
+//           //fInfo(dingyue_clt[dingyue_clt.length-1].parent().child(1).desc().slice(0,4)+" 旧:"+last_desc.slice(0,4));
+//           if (dingyue_clt[dingyue_clt.length - 1].parent().child(1).desc() == last_desc) {
+//             fClear();
+//             fInfo("到底了");
+//             break;
+//           }
+//           // 最底下订阅的名称
+//           last_desc = dingyue_clt[dingyue_clt.length - 1].parent().child(1).desc();
+//         } catch (e) {
+//           log(e);
+//           continue;
+//         }
+//         let img = captureScreen();
+//         for (let dingyue of dingyue_clt) {
+//           if (dingyue.bounds().bottom >= device_h) {
+//             continue;
+//           }
+//           try {
+//             var pot = findColorInRegion(img, "#E42417", dingyue.bounds().left, dingyue.bounds().top,
+//               dingyue.bounds().width(), dingyue.bounds().height(), 30);
+//           } catch (e) {
+//             console.error(dingyue.bounds());
+//             console.error(dingyue.parent().child(1).desc());
+//           }
+//           //if (pot && dingyue.bounds().bottom < device_h) {
+//           if (pot) {
+//             fInfo("找到一个订阅");
+//             sleep(1000);
+//             let is_click = dingyue.click();
+//             fInfo("点击：" + is_click);
+//             //click(dingyue.bounds().centerX(), dingyue.bounds().centerY());
+//             sleep(1000);
+//             //click(pot.x, pot.y+5);
+//             total_click += 1;
+//           }
+//           if (total_click >= 2) {
+//             fInfo("订阅已完成");
+//             back();
+//             text("登录").waitFor();
+//             ran_sleep();
+//             return true;
+//           }
+//         }
+//         //img.recycle();
+//         let scr_result = you_clt.scrollForward();
+//         sleep(500);
+//         //         swipe(device_w*0.6, device_h*0.8, device_w*0.6, device_h*0.3, 800);
+//         //         while (desc("加载中").exists()) { sleep(1000); }
+//       }
+//       if (dingyue_dao) {
+//         fInfo("只检查年度上新");
+//         break;
+//       }
+//     }
+//     //sleep(1000);
+//   }
+//   fInfo("无可订阅项目");
+//   back();
+//   text("登录").waitFor();
+//   ran_sleep();
+//   return true;
+// }
+
+
+
+
 function do_dingyue() {
-  entry_jifen_project("订阅");
-  fSet("title", "订阅…");
-  fClear();
-  let tab1 = descContains("Tab").findOne(9000);
-  if (!tab1) {
-    back();
-    text("登录").waitFor();
-    return false
-  }
-  let zuo1 = descContains("上新").findOne(9000);
-  if (!zuo1) {
-    back();
-    text("登录").waitFor();
-    return false
-  }
-  // 上方标签
-  let tab_clt = descContains("Tab").untilFind();
-  let total_click = 0;
-  for (let tab of tab_clt) {
-    tab.click();
-    sleep(500);
-    // 左方分类
-    let zuo_clt = className("android.view.View").depth(14).findOne().children();
-    for (let zuo of zuo_clt) {
-      if (dingyue_dao) {
-        zuo = zuo_clt[zuo_clt.length - 1];
-      }
-      zuo.click();
-      sleep(500);
-      // 右方列表
-      className("android.view.View").depth(14).waitFor();
-      let you_clt = className("android.view.View").depth(14).findOnce(1);
-      let last_desc = "";
-      while (you_clt) {
-        //let img = captureScreen();
-        // 订阅按钮集合
-        //fInfo("查找订阅集合");
-        let dingyue_clt = className("android.widget.ImageView").indexInParent(2).untilFind();
-        try {
-          //fInfo(dingyue_clt[dingyue_clt.length-1].parent().child(1).desc().slice(0,4)+" 旧:"+last_desc.slice(0,4));
-          if (dingyue_clt[dingyue_clt.length - 1].parent().child(1).desc() == last_desc) {
-            fClear();
-            fInfo("到底了");
-            break;
-          }
-          // 最底下订阅的名称
-          last_desc = dingyue_clt[dingyue_clt.length - 1].parent().child(1).desc();
-        } catch (e) {
-          log(e);
-          continue;
-        }
-        let img = captureScreen();
-        for (let dingyue of dingyue_clt) {
-          if (dingyue.bounds().bottom >= device_h) {
-            continue;
-          }
-          try {
-            var pot = findColorInRegion(img, "#E42417", dingyue.bounds().left, dingyue.bounds().top,
-              dingyue.bounds().width(), dingyue.bounds().height(), 30);
-          } catch (e) {
-            console.error(dingyue.bounds());
-            console.error(dingyue.parent().child(1).desc());
-          }
-          //if (pot && dingyue.bounds().bottom < device_h) {
-          if (pot) {
-            fInfo("找到一个订阅");
-            sleep(1000);
-            let is_click = dingyue.click();
-            fInfo("点击：" + is_click);
-            //click(dingyue.bounds().centerX(), dingyue.bounds().centerY());
-            sleep(1000);
-            //click(pot.x, pot.y+5);
-            total_click += 1;
-          }
-          if (total_click >= 2) {
-            fInfo("订阅已完成");
-            back();
-            text("登录").waitFor();
-            ran_sleep();
-            return true;
-          }
-        }
-        //img.recycle();
-        let scr_result = you_clt.scrollForward();
-        sleep(500);
-        //         swipe(device_w*0.6, device_h*0.8, device_w*0.6, device_h*0.3, 800);
-        //         while (desc("加载中").exists()) { sleep(1000); }
-      }
-      if (dingyue_dao) {
-        fInfo("只检查年度上新");
-        break;
-      }
+   entry_jifen_project("订阅");
+  // entry_model(jifen_map["订阅"]);
+   fSet("title", "订阅…");
+   fClear();
+   fInfo("设置订阅");
+   fRefocus()
+     h = device_h; //屏幕高
+     w = device_w; //屏幕宽
+     x = (w / 3) * 2;
+     h1 = (h / 10) * 9;
+     h2 = (h / 12); 
+     let total_click = 0;
+     if (dingyue_dao) {
+       w = fInit();
+         // fSet("title", "搜索‘上新/2023年上线’订阅…");
+          fClear();
+          fInfo("上新/2023年上线--搜索中……");
+          var t_1 = 468;
+          var t_2 = 1199;
+          var arr = [2, 6];
+        }else{
+         w = fInit();
+       // fSet("title", "搜索‘强国号’订阅…");
+        fClear();
+        fInfo("强国号’-- 遍历搜索中………");
+        var t_1 = 318;
+        var t_2 = 150;
+      var arr = [4, 3, 10, 35, 38, 4, 45, 44, 4, 1];
+         }
+   for (let i = 0; i < arr.length + 1; i++) {
+     var asub_1 = parseInt(arr[i]);
+     sleep(random(400, 800)); 
+     press(136,t_1,100) ;
+     sleep(random(800, 1500));
+    
+         for (let ii = 0; ii < asub_1; ii++) {
+           while (total_click < 2 && asub_1 != 0) {
+           while(total_click < 2){
+             sleep(random(500, 1000)); 
+             let img = captureScreen();
+           sleep(random(300, 500));
+           try {
+             var pot = findColorInRegion(img, "#E42417", 1000, 100,
+             device.width - 1000, device.height - 200, 30);
+           } catch (e) {
+             console.error('继续搜寻');
+             continue;
+           }
+         if(pot) {
+             //fInfo("找到新订阅");
+             sleep(random(800, 1500)); 
+             // let is_click = dingyue.click();
+             fInfo("找到并准备点击：订阅");
+             //click(dingyue.bounds().centerX(), dingyue.bounds().centerY());
+             sleep(random(800, 1500)); 
+             click(pot.x, pot.y+5);
+             fInfo("点击坐标 (" + pot.x + "," + (pot.y+5) + ")");
+             fInfo("完成第 " + (total_click + 1) + " 订阅");
+             total_click += 1;
+              img.recycle();
+              sleep(random(800, 1500));
+           }else {
+              img.recycle();
+             break;
+               }
+         }
+           if (total_click == 2) {
+            
+            // w = fInit();
+             fInfo("订阅已完成,准备返回");
+             back();
+             text("登录").waitFor();
+             ran_sleep();
+             return true;
+             } else { 
+            //   img.recycle();
+               swipe(x+random(-5, 5), h1+random(-2, 8), x + random(-4, 6), h2+random(-2, 7), random(800, 1200)); // 下滑动
+               toastLog("下滑搜索中……");
+               //fInfo("下滑搜索中……");
+               asub_1--;
+           sleep(random(800, 1500)); 
+                    }
+         }
+         //img.recycle();
+         sleep(500);
+         }
+         t_1 += t_2;
+     }
+       if(total_click < 2 && dingyue_dao){
+       fClear();
+          fInfo("继续地方-上新/2023年上线-搜索……");
+          press(670,167,100) ;
+          sleep(random(600, 1000));
+          var t_1 = 468;
+          var t_2 = 449;
+          var arr = [1, 2];
+          for (let i = 0; i < arr.length + 1; i++) {
+           var asub_1 = parseInt(arr[i]);
+           sleep(random(400, 800)); 
+           press(136,t_1,100) ;
+           sleep(random(800, 1500));
+               for (let ii = 0; ii < asub_1; ii++) {
+                 while (total_click < 2 && asub_1 != 0) {
+                   while(total_click < 2){
+                 sleep(random(500, 1000)); 
+                 let img = captureScreen();
+                 sleep(random(300, 500));
+                 try {
+                   var pot = findColorInRegion(img, "#E42417", 1000, 100,
+                   device.width - 1000, device.height - 200, 30);
+                 } catch (e) {
+                   console.error('继续搜寻');
+                   continue;
+                 }
+                 if (pot) {
+                  // fInfo("找到一个订阅");
+                   sleep(random(800, 1500)); 
+                   // let is_click = dingyue.click();
+                   fInfo("找到并准备点击：订阅");
+                   //click(dingyue.bounds().centerX(), dingyue.bounds().centerY());
+                   sleep(random(800, 1500)); 
+                   click(pot.x, pot.y+5);
+                   fInfo("点击坐标 (" + pot.x + "," + (pot.y+5) + ")");
+                   fInfo("完成第 " + (total_click + 1) + " 订阅"); 
+                   total_click += 1;
+                  // sleep(random(800, 1500));
+                    img.recycle();
+                    sleep(random(800, 1500));
+                 }else{
+                   img.recycle();
+                   break;
+                 }
+                 }
+                 if (total_click == 2) {
+                  // img.recycle();
+                  // w = fInit();
+                   fInfo("订阅已完成,准备返回");
+                   back();
+                   text("登录").waitFor();
+                   ran_sleep();
+                   return true;
+                   } else { 
+                  //   img.recycle();
+                     swipe(x+random(-5, 5), h1+random(-3, 3), x+random(-2, 5), h2+random(-3, 7), random(800, 1200)); // 下滑动
+                     toastLog("下滑搜索中……");
+                     asub_1--;
+                 sleep(random(800, 1500)); 
+                          }
+               }
+               //img.recycle();
+               sleep(500);
+               }
+               t_1 += t_2;
+           }
+       }
+ 
+ 
+     if (total_click == 0) fError("无新可订阅项目");
+     if (total_click == 1) fTips("此次仅发现1个可订阅项目");
+     back();
+     text("登录").waitFor();
+     ran_sleep();
+     return true;
     }
-    //sleep(1000);
-  }
-  fInfo("无可订阅项目");
-  back();
-  text("登录").waitFor();
-  ran_sleep();
-  return true;
-}
+ 
+ /********订阅*********/
+ function do_dingyue_0() {
+  // entry_jifen_project("订阅");
+   entry_model(jifen_map["订阅"]);
+   fSet("title", "订阅…");
+   fClear();
+   let tab1 = descContains("Tab").findOne(9000);
+   if (!tab1) {
+     back();
+     text("登录").waitFor();
+     return false
+   }
+   let zuo1 = descContains("上新").findOne(9000);
+   if (!zuo1) {
+     back();
+     text("登录").waitFor();
+     return false
+   }
+   // 上方标签
+   let tab_clt = descContains("Tab").untilFind();
+   var total_click = 0;
+   for (let tab of tab_clt) {
+     tab.click();
+     sleep(500);
+     // 左方分类
+     let zuo_clt = className("android.view.View").depth(14).findOne().children();
+     for (let zuo of zuo_clt) {
+       if (dingyue_dao) {
+         zuo = zuo_clt[zuo_clt.length - 1];
+       }
+       zuo.click();
+       sleep(500);
+       // 右方列表
+       className("android.view.View").depth(14).waitFor();
+       let you_clt = className("android.view.View").depth(14).findOnce(1);
+       let last_desc = "";
+       while (you_clt) {
+         //let img = captureScreen();
+         // 订阅按钮集合
+         //fInfo("查找订阅集合");
+         let dingyue_clt = className("android.widget.ImageView").indexInParent(2).untilFind();
+         try {
+           //fInfo(dingyue_clt[dingyue_clt.length-1].parent().child(1).desc().slice(0,4)+" 旧:"+last_desc.slice(0,4));
+           if (dingyue_clt[dingyue_clt.length - 1].parent().child(1).desc() == last_desc) {
+             fClear();
+             fInfo("到底了");
+             break;
+           }
+           // 最底下订阅的名称
+           last_desc = dingyue_clt[dingyue_clt.length - 1].parent().child(1).desc();
+         } catch (e) {
+           log(e);
+           continue;
+         }
+         let img = captureScreen();
+         for (let dingyue of dingyue_clt) {
+           if (dingyue.bounds().bottom >= device_h) {
+             continue;
+           }
+           try {
+             var pot = findColorInRegion(img, "#E42417", dingyue.bounds().left, dingyue.bounds().top,
+               dingyue.bounds().width(), dingyue.bounds().height(), 30);
+           } catch (e) {
+             console.error(dingyue.bounds());
+             console.error(dingyue.parent().child(1).desc());
+           }
+           //if (pot && dingyue.bounds().bottom < device_h) {
+           if (pot) {
+             fInfo("找到一个订阅");
+             sleep(1000);
+             let is_click = dingyue.click();
+             fInfo("点击：" + is_click);
+             //click(dingyue.bounds().centerX(), dingyue.bounds().centerY());
+             sleep(1000);
+             //click(pot.x, pot.y+5);
+             total_click += 1;
+           }
+           if (total_click >= 2) {
+             fInfo("订阅已完成");
+             back();
+             text("登录").waitFor();
+             ran_sleep();
+             return true;
+           }
+         }
+         //img.recycle();
+         let scr_result = you_clt.scrollForward();
+         sleep(500);
+         //         swipe(device_w*0.6, device_h*0.8, device_w*0.6, device_h*0.3, 800);
+         //         while (desc("加载中").exists()) { sleep(1000); }
+       }
+       if (dingyue_dao) {
+         fInfo("只检查年度上新");
+         break;
+       }
+     }
+     //sleep(1000);
+   }
+   fInfo("无可订阅项目");
+   back();
+   text("登录").waitFor();
+   ran_sleep();
+   return true;
+ }
+
 
 /*********本地*********/
 function do_bendi() {
@@ -2599,8 +2874,8 @@ function xxqg(userinfo) {
     }
   }
   //随机答题部分
-  // 导入文章、视听、本地3个执行函数
-  var funcs = [video, article, local];
+  // 导入文章、视听、本地、订阅3个执行函数
+  var funcs = [video, article, local，dy];
   // 随机打乱函数顺序
   shuffle(funcs);
   fInfo("***文章、视听、本地***");
@@ -2657,6 +2932,18 @@ function xxqg(userinfo) {
       }
     }
   }
+  function dy() {
+    if (true == dingyue) {
+      let jifen_list = className("android.widget.ListView").findOne();
+      if ("已完成" != jifen_list.findOne(textEndsWith("订阅")).parent().child(4).text()) {
+        toastLog("订阅开始");
+        do_dingyue()
+      } else {
+        fInfo("订阅任务已完成");
+        sleep(500);
+      }
+    }
+  }  
   //每日答题部分
   if (true == meiri) {
     let jifen_list = className("android.widget.ListView").findOne();

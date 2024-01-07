@@ -1384,7 +1384,7 @@ function dacuo(renshu) {
     sleep(100); // 追求极限速度，不知道会不会出错
     //log("find view_d28");
     // listview父框体
-    let view_d28 = className("android.view.View").depth(16).indexInParent(0).findOne(1000);
+    let view_d28 = className("android.view.View").depth(15).indexInParent(0).findOne(1000);
     if (!view_d28) {
       //log("找不到view_d28");
       //log('far:', listview.parent());

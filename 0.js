@@ -290,7 +290,7 @@ function do_shipin() {
   desc("百灵").findOne().click();
   let shu = className("android.widget.TextView").text("竖").findOne().parent();
   shu.click();
-  sleep(1000);
+  sleep(2000);
   // // 定位到整个百灵frame_box
   // //这里！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！
   // let frame_box = shu.parent().parent().parent().parent();

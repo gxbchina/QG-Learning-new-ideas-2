@@ -2708,6 +2708,7 @@ function noverify() {
       }
       textContains("访问异常").waitFor();
       fInfo("检测到滑动验证，请尽快滑动");
+      sleep(1000);
       device.vibrate(a);
       textContains("刷新").exists() ? click("刷新") : textContains("网络开小差").exists() ? click("确定") : sleep(1000)
     }

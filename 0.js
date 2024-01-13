@@ -1113,6 +1113,10 @@ function do_duizhan1(renshu) {
         fError("未识别出题目，可能被禁止截图或无障碍失效");
         img.recycle();
         que_img.recycle();
+        fError("未识别出选项，随机选择");
+        className("android.widget.RadioButton").findOnce(random(0, radio_num - 1)).parent().click();
+        err_flag = false;
+        continue;
       }
     }
     if (renshu == 0) {

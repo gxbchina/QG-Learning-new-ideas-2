@@ -1115,8 +1115,6 @@ function do_duizhan1(renshu) {
         que_img.recycle();
         fError("未识别出选项，随机选择");
         className("android.widget.RadioButton").findOnce(random(0, radio_num - 1)).parent().click();
-        err_flag = false;
-        continue;
       }
     }
     if (renshu == 0) {

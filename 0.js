@@ -162,15 +162,12 @@ fInfo("检测题库更新");
 fInfo("如果不动就是正在下载，多等会");
 //const update_info = get_tiku_by_http("https://gitcode.net/m0_64980826/songge_tiku/-/raw/master/info.json");
 const update_info = get_tiku_by_http("https://gitcode.net/m0_64980826/songge_tiku/-/raw/master/info.json");
-fInfo("正在加载对战题库......请稍等\n题库版本:" + update_info["tiku_link"].split('_')[1]);
+fInfo("正在加载对战题库......请稍等\n题库版本:" + update_info["tiku_version"]);
 var tiku = [];
 try {
-  fInfo("题目数量:" + update_info["tiku_link"].split('_')[2].slice(0, -4));
   tiku = get_tiku_by_http(update_info["tiku_link"]);
 } catch (e) {
   tiku = get_tiku_by_http(update_info["tiku_link2"]);
-  fInfo("题库题数:" + update_info["tiku_link2"].split('_')[2].slice(0, -4));
-  toastLog("题库链接1失效");
 }
 // var tiku = get_tiku_by_gitee();
 fInfo("正在加载专项题库......请稍等\n题库版本:" + update_info["dati_tiku_version"]);

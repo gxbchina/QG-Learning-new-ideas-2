@@ -205,9 +205,15 @@ var nolocate_thread = threads.start(function () {
   text("暂不开启").findOne().click();
   fInfo("已关闭定位");
 });
-fInfo("跳转学习APP");
+fInfo("！！手动打开强国后在运行脚本！！");
 // launch('cn.xuexi.android');
-app.launchApp('学习强国');
+//app.launchApp('学习强国');
+sleep(2000);
+fInfo("！！手动打开强国后在运行脚本！！");
+fInfo("！！手动打开强国后在运行脚本！！");
+fInfo("！！手动打开强国后在运行脚本！！");
+fInfo("！！手动打开强国后在运行脚本！！");
+fInfo("！！手动打开强国后在运行脚本！！");
 sleep(2000);
 
 

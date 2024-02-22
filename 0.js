@@ -3,6 +3,8 @@ var delay_time = 3000;
 device.wakeUpIfNeeded();//如果屏幕没有点亮，则唤醒设备。
 
 // 读取自定义配置
+var _s = require('./yolov5v8ncnn');
+var yolo = _s.yolov8("淘宝滑块",640); //用yolov5训练的v5模型
 var TTXS_PRO_CONFIG = storages.create("TTXS_PRO_CONFIG");
 var watchdog = TTXS_PRO_CONFIG.get("watchdog", "1800");
 var slide_verify = TTXS_PRO_CONFIG.get("slide_verify", "300");

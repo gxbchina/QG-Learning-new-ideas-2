@@ -1,7 +1,8 @@
 auto.waitFor();
 var delay_time = 3000;
 device.wakeUpIfNeeded();//如果屏幕没有点亮，则唤醒设备。
-
+let _s = require('./yolov5v8ncnn');
+let yolo = _s.yolov8("淘宝滑块",640); //用yolov5训练的v5模型
 // 读取自定义配置
 var TTXS_PRO_CONFIG = storages.create("TTXS_PRO_CONFIG");
 var watchdog = TTXS_PRO_CONFIG.get("watchdog", "1800");
@@ -3234,8 +3235,7 @@ exit_app("学习强国");
 exit();
 function 滑动滑块() {
   //yolov5v8ncnn
-  let _s = require('./yolov5v8ncnn');
-  let yolo = _s.yolov8("淘宝滑块",640); //用yolov5训练的v5模型
+
   //GoogleOcr配置
   function google_ocr_api(img) {
     console.log('GoogleMLKit文字识别中');

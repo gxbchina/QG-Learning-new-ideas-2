@@ -679,7 +679,6 @@ function do_wenzhang() {
 // /*专项答题中提示的层次与每日每周的不一样
 //  * 专项答题出现的倒计时会影响22,23层的结构*/
 function do_zhuanxiang() {
-  sleep(2000)
   let zhuanxiang_d = text("专项答题").findOne(4000);
   if (zhuanxiang_d != null) zhuanxiang_d.parent().click()
   else {
@@ -697,7 +696,6 @@ function do_zhuanxiang() {
   // 等待加载
   depth(10).waitFor();
   ran_sleep();
-  
   let scoll = className("android.view.View").scrollable(true).findOne()
   fInfo('111111111111111')
   //let new_tihao = [];
@@ -707,10 +705,10 @@ function do_zhuanxiang() {
     while (!text("已满分").exists()) {
       scoll.scrollForward();
       // 不加延迟会很卡
-      sleep(500);
+      sleep(200);
     }
-    fInfo('22222222222')
-    var clt = textMatches(/继续答题|开始答题/).find();
+    
+    var clt = textMatches(/继续答题|开始答题|重新答题/).find();
     if (clt.empty()) {
       fInfo("专项答题全部已作答。");
       back();
@@ -728,7 +726,7 @@ function do_zhuanxiang() {
       return w.bounds().top <= device_h - 30;
     });
     //while (true) { //测试用
-    while (!textMatches(/继续答题|开始答题/).exists()) { //开始答题
+    while (!textMatches(/继续答题|开始答题|重新答题/).exists()) { //开始答题
       // 如果到底则设置倒序为true
       if (dixian_slt.exists()) {
         //storage_user.put('zhuanxiang_dao', true); 自定义不用读取
@@ -742,25 +740,24 @@ function do_zhuanxiang() {
       for (i = 0; i < 15; i++) {
         scoll.scrollForward();
         // 不加延迟会很卡
-        sleep(300);
+        sleep(500);
       }
     }
-    fInfo('333333333333')
-    textMatches(/继续答题|开始答题/).findOne().click();
+    fInfo('开始答题')
+    textMatches(/继续答题|开始答题|重新答题/).findOne().click();
   }
   ran_sleep();
   // 等待加载
   text("查看提示").waitFor();
   sleep(2000);
   // 获取右上题号，如1 /5
-  //var tihao = className("android.view.View").text("1 /5").findOne();
   var tihao = className("android.view.View").depth(24).findOnce(1).text();
   // 需要加个斜杠转义
   let reg = /(\d+) \/(\d+)/;
   var num = Number(tihao.match(reg)[1]);
   var sum = Number(tihao.match(reg)[2]);
   var substr = " /" + sum;
-  //log(tihao);
+  log(tihao);
   while (num <= sum) {
     fClear();
     fInfo("第" + num + "题");
@@ -833,7 +830,7 @@ function do_meiri() {
   // 等待加载
   text("查看提示").waitFor();
   // 获取右上题号，如1 /5
-  var tihao = className("android.view.View").depth(11).findOnce(1).text();
+  var tihao = className("android.view.View").depth(24).findOnce(1).text();
   var num = Number(tihao[0]);
   var sum = Number(tihao[tihao.length - 1]);
   var substr = tihao.slice(1);

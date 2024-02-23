@@ -679,19 +679,20 @@ function do_wenzhang() {
 // /*专项答题中提示的层次与每日每周的不一样
 //  * 专项答题出现的倒计时会影响22,23层的结构*/
 function do_zhuanxiang() {
+  
   let zhuanxiang_d = text("专项答题").findOne(4000);
   if (zhuanxiang_d != null) zhuanxiang_d.parent().click()
-  // else {
-  //   var textOrder = text("排行榜").findOnce().parent();
-  //   while (text("排行榜").exists()) {
-  //     console.info("点击专项答题");
-  //     textOrder.child(4).click();
-  //     fInfo("2222222");
-  //     sleep(random(700, 1500));
-  //     sleep(1000);
-  //   }
-  // }
-  fInfo("专项开始");
+  else {
+    var textOrder = text("排行榜").findOnce().parent();
+    while (text("排行榜").exists()) {
+      console.info("点击专项答题");
+      textOrder.child(4).click();
+      fInfo('111111')
+      sleep(random(700, 1500));
+      sleep(1000);
+    }
+  }
+  fInfo('专项答题开始')
   fSet("title", "专项答题…");
   fClear();
   // 等待加载
@@ -817,7 +818,6 @@ function do_zhuanxiang() {
   ran_sleep();
   return true;
 }
-
 
 
 

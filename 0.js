@@ -698,7 +698,7 @@ function do_zhuanxiang() {
   depth(10).waitFor();
   ran_sleep();
   
-  let scoll = depth(21).indexInParent(1).scrollable().findOne();
+  let scoll = className("android.view.View").scrollable(true).findOne()
   fInfo('111111111111111')
   //let new_tihao = [];
   // 下面是倒序答题

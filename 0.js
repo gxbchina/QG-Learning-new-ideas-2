@@ -2898,7 +2898,7 @@ function xxqg(userinfo) {
     if (mz_0 == null) back(), sleep(1000), text("我的").findOne().click();
     else mz_0.click();
     sleep(1000);
-    mz_1 = text("我要答题").findOne(3500);
+    mz_1 = text("我要答题").findOne(2000);
     if (mz_1 == null) { click(522, 855); press(522, 855, 150); }
     else mz_1.parent().click();
     sleep(1000);

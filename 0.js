@@ -15,7 +15,7 @@ var wenzhang = TTXS_PRO_CONFIG.get("wenzhang", true);
 var meiri = TTXS_PRO_CONFIG.get("meiri", true);
 var quwei = TTXS_PRO_CONFIG.get("quwei", true);
 //var meizhou = TTXS_PRO_CONFIG.get("meizhou", 0);
-var zhuanxiang = TTXS_PRO_CONFIG.get("zhuanxiang", 0);
+var zhuanxiang = TTXS_PRO_CONFIG.get("zhuanxiang", 1);
 var tiaozhan = TTXS_PRO_CONFIG.get("tiaozhan", true);
 var ocr_choice = TTXS_PRO_CONFIG.get("ocr_choice", 0);
 var ocr_maxtime = TTXS_PRO_CONFIG.get("ocr_maxtime", "5000");
@@ -2871,6 +2871,8 @@ function xxqg(userinfo) {
   noupdate_thread.isAlive() && (noupdate_thread.interrupt(), fInfo("终止更新弹窗检测"));
   nonotice_thread.isAlive() && (nonotice_thread.interrupt(), fInfo("终止消息通知检测"));
   //专项
+
+  
   if (true == zhuanxiang) {
     back();
     fClear();
@@ -2886,6 +2888,8 @@ function xxqg(userinfo) {
     for (c = do_zhuanxiang(); !c;) c = do_zhuanxiang();
     jifen_init();
   }
+
+  
   //发表评论部分
   if (true == pinglun) {
     let jifen_list = className("android.widget.ListView").findOne();

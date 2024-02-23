@@ -2881,7 +2881,7 @@ function xxqg(userinfo) {
   }
   //随机答题部分
   // 导入文章、视听、本地、3个执行函数
-  var funcs = [video, article, local];
+  var funcs = [video, article, local，dy];
   // 随机打乱函数顺序
   shuffle(funcs);
   fInfo("***文章、视听、本地***");
@@ -2910,6 +2910,21 @@ function xxqg(userinfo) {
 
     return array;
   }
+
+    //订阅学习部分
+  function dy() {
+    if (true == dingyue) {
+      let jifen_list = className("android.widget.ListView").findOne();
+      if ("已完成" != jifen_list.findOne(textEndsWith("订阅")).parent().child(4).text()) {
+        toastLog("订阅开始");
+        do_dingyue()
+      } else {
+        fInfo("订阅任务已完成");
+        sleep(500);
+      }
+    }
+  }
+  
   //视听学习部分
   function video() {
     if (true == shipin) {

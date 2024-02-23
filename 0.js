@@ -2851,13 +2851,15 @@ function xxqg(userinfo) {
   // } else if (meizhou == 0) {
   //   meizhou_dao = true;
   // }
-  // if (zhuanxiang == 1) {
-  //   zhuanxiang_dao = false;
-  // } else if (zhuanxiang == 0) {
-  //   zhuanxiang_dao = true;
-  //}
-  if (dingyue == 1) {
+  if (zhuanxiang == 1) {
+    zhuanxiang_dao = false;
+  } else if (zhuanxiang == 0) {
+    zhuanxiang_dao = true;
+  }
+  if (dingyue == 0) {
     dingyue_dao = false;
+  } else if (dingyue == 1) {
+    dingyue_dao = true;
   } else if (dingyue == 2) {
     dingyue_dao = true;
   }
@@ -2868,6 +2870,22 @@ function xxqg(userinfo) {
   nolocate_thread.isAlive() && (nolocate_thread.interrupt(), fInfo("终止位置权限弹窗检测"));
   noupdate_thread.isAlive() && (noupdate_thread.interrupt(), fInfo("终止更新弹窗检测"));
   nonotice_thread.isAlive() && (nonotice_thread.interrupt(), fInfo("终止消息通知检测"));
+  //专项
+  if (true == zhuanxiang) {
+    back();
+    fClear();
+    toastLog("专项答题开始");
+    mz_0 = text("我的").findOne(2000);
+    if (mz_0 == null) back(), sleep(1000), text("我的").findOne().click();
+    else mz_0.click();
+    sleep(1000);
+    mz_1 = text("我要答题").findOne(3500);
+    if (mz_1 == null) { click(522, 855); press(522, 855, 150); }
+    else mz_1.parent().click();
+    sleep(1000);
+    for (c = do_zhuanxiang(); !c;) c = do_zhuanxiang();
+    jifen_init();
+  }
   //发表评论部分
   if (true == pinglun) {
     let jifen_list = className("android.widget.ListView").findOne();

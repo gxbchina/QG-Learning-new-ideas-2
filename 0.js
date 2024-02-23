@@ -2899,7 +2899,7 @@ function xxqg(userinfo) {
   if (true == zhuanxiang) {
     back();
     fClear();
-    //toastLog("专项答题开始");
+    toastLog("专项答题开始");
     mz_0 = text("我的").findOne(2000);
     if (mz_0 == null) back(), sleep(1000), text("我的").findOne().click();
     else mz_0.click();

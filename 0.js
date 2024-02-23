@@ -752,6 +752,8 @@ function do_zhuanxiang() {
   sleep(2000);
   // 获取右上题号，如1 /5
   var tihao = className("android.view.View").depth(24).findOnce(1).text();
+  log(tihao)
+  sleep(100000)
   // 需要加个斜杠转义
   let reg = /(\d+) \/(\d+)/;
   var num = Number(tihao.match(reg)[1]);

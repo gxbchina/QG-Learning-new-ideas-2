@@ -675,129 +675,129 @@ function do_wenzhang() {
 //   return true;
 // //}
 
-// /********专项答题*********/
-// /*专项答题中提示的层次与每日每周的不一样
-//  * 专项答题出现的倒计时会影响22,23层的结构*/
-// //function do_zhuanxiang() {
-//   entry_jifen_project("专项答题");
-//   fSet("title", "专项答题…");
-//   fClear();
-//   // 等待加载
-//   depth(23).waitFor();
-//   ran_sleep();
-//   let scoll = depth(21).indexInParent(1).scrollable().findOne();
-//   //let new_tihao = [];
-//   // 下面是倒序答题
-//   if (zhuanxiang_dao) {
-//     // 当出现已满分时，点击最后一个开始答题
-//     while (!text("已满分").exists()) {
-//       scoll.scrollForward();
-//       // 不加延迟会很卡
-//       sleep(200);
-//     }
-//     var clt = text("开始答题").find();
-//     if (clt.empty()) {
-//       fInfo("专项答题全部已作答。");
-//       back();
-//       text("登录").waitFor();
-//       ran_sleep();
-//       return true;
-//     }
-//     // 点击最后一项
-//     clt[clt.length - 1].click();
-//   }
-//   // 下面是正序
-//   else {
-//     // 直到找到开始答题
-//     let dixian_slt = text("您已经看到了我的底线").filter(function (w) {
-//       return w.bounds().top <= device_h - 30;
-//     });
-//     //while (true) { //测试用
-//     while (!text("开始答题").exists()) { //开始答题
-//       // 如果到底则设置倒序为true
-//       if (dixian_slt.exists()) {
-//         //storage_user.put('zhuanxiang_dao', true); 自定义不用读取
-//         fInfo("专项答题全部已作答。");
-//         back();
-//         text("登录").waitFor();
-//         ran_sleep();
-//         return true;
-//       }
-//       // 滚动20次
-//       for (i = 0; i < 15; i++) {
-//         scoll.scrollForward();
-//         // 不加延迟会很卡
-//         sleep(300);
-//       }
-//     }
-//     text("开始答题").findOne().click();
-//   }
-//   ran_sleep();
-//   // 等待加载
-//   text("查看提示").waitFor();
-//   sleep(2000);
-//   // 获取右上题号，如1 /5
-//   var tihao = className("android.view.View").depth(24).findOnce(1).text();
-//   // 需要加个斜杠转义
-//   let reg = /(\d+) \/(\d+)/;
-//   var num = Number(tihao.match(reg)[1]);
-//   var sum = Number(tihao.match(reg)[2]);
-//   var substr = " /" + sum;
-//   //log(tihao);
-//   while (num <= sum) {
-//     fClear();
-//     fInfo("第" + num + "题");
-//     // 等待加载
-//     text(num + substr).waitFor();
-//     num++;
-//     do_exec();
-//     // 点击确定下一题
-//     let next = className("android.view.View").filter(function (l) {
-//       return (l.text() == "下一题") || (l.text() == "完成");
-//     });
-//     next.findOne().click();
-//     //     if (!click("下一题")) {
-//     //       click("完成");
-//     //     }
-//     ran_sleep();
-//   }
-//   // 循环结束完成答题
-//   text("查看解析").waitFor();
-//   sleep(1000);
-//   // 如果题目答错，循环每一题并添加错题
-//   if (textMatches(/\d+分/).findOne().text() != "100分") {
-//     fInfo("有错题，尝试上传错题");
-//     text("查看解析").findOne().click();
-//     tihao = textMatches(reg).findOne().text();
-//     num = Number(tihao.match(reg)[1]);
-//     sum = Number(tihao.match(reg)[2]);
-//     substr = " /" + sum;
-//     //log(tihao);
-//     sleep(1500);
-//     while (num <= sum) {
-//       // 等待加载
-//       text(num + substr).waitFor();
-//       num++;
-//       if (textEndsWith("回答错误").exists()) {
-//         upload_wrong_exec();
-//       }
-//       // 点击确定下一题
-//       let next = className("android.view.View").filter(function (l) {
-//         return (l.text() == "下一题") || (l.text() == "完成");
-//       });
-//       next.findOne().click();
-//       sleep(random(1000, 1500));
-//     }
-//     storage.put('dati_tiku', dati_tiku);
-//   } else {
-//     back();
-//     ran_sleep();
-//   }
-//   back();
-//   text("登录").waitFor();
-//   ran_sleep();
-//   return true;
-// //}
+//********专项答题*********/
+//*专项答题中提示的层次与每日每周的不一样
+ //* 专项答题出现的倒计时会影响22,23层的结构*/
+function do_zhuanxiang() {
+  entry_jifen_project("专项答题");
+  fSet("title", "专项答题…");
+  fClear();
+  // 等待加载
+  depth(23).waitFor();
+  ran_sleep();
+  let scoll = depth(21).indexInParent(1).scrollable().findOne();
+  //let new_tihao = [];
+  // 下面是倒序答题
+  if (zhuanxiang_dao) {
+    // 当出现已满分时，点击最后一个开始答题
+    while (!text("已满分").exists()) {
+      scoll.scrollForward();
+      // 不加延迟会很卡
+      sleep(200);
+    }
+    var clt = text("开始答题").find();
+    if (clt.empty()) {
+      fInfo("专项答题全部已作答。");
+      back();
+      text("登录").waitFor();
+      ran_sleep();
+      return true;
+    }
+    // 点击最后一项
+    clt[clt.length - 1].click();
+  }
+  // 下面是正序
+  else {
+    // 直到找到开始答题
+    let dixian_slt = text("您已经看到了我的底线").filter(function (w) {
+      return w.bounds().top <= device_h - 30;
+    });
+    //while (true) { //测试用
+    while (!text("开始答题").exists()) { //开始答题
+      // 如果到底则设置倒序为true
+      if (dixian_slt.exists()) {
+        //storage_user.put('zhuanxiang_dao', true); 自定义不用读取
+        fInfo("专项答题全部已作答。");
+        back();
+        text("登录").waitFor();
+        ran_sleep();
+        return true;
+      }
+      // 滚动20次
+      for (i = 0; i < 15; i++) {
+        scoll.scrollForward();
+        // 不加延迟会很卡
+        sleep(300);
+      }
+    }
+    text("开始答题").findOne().click();
+  }
+  ran_sleep();
+  // 等待加载
+  text("查看提示").waitFor();
+  sleep(2000);
+  // 获取右上题号，如1 /5
+  var tihao = className("android.view.View").depth(24).findOnce(1).text();
+  // 需要加个斜杠转义
+  let reg = /(\d+) \/(\d+)/;
+  var num = Number(tihao.match(reg)[1]);
+  var sum = Number(tihao.match(reg)[2]);
+  var substr = " /" + sum;
+  //log(tihao);
+  while (num <= sum) {
+    fClear();
+    fInfo("第" + num + "题");
+    // 等待加载
+    text(num + substr).waitFor();
+    num++;
+    do_exec();
+    // 点击确定下一题
+    let next = className("android.view.View").filter(function (l) {
+      return (l.text() == "下一题") || (l.text() == "完成");
+    });
+    next.findOne().click();
+    //     if (!click("下一题")) {
+    //       click("完成");
+    //     }
+    ran_sleep();
+  }
+  // 循环结束完成答题
+  text("查看解析").waitFor();
+  sleep(1000);
+  // 如果题目答错，循环每一题并添加错题
+  if (textMatches(/\d+分/).findOne().text() != "100分") {
+    fInfo("有错题，尝试上传错题");
+    text("查看解析").findOne().click();
+    tihao = textMatches(reg).findOne().text();
+    num = Number(tihao.match(reg)[1]);
+    sum = Number(tihao.match(reg)[2]);
+    substr = " /" + sum;
+    //log(tihao);
+    sleep(1500);
+    while (num <= sum) {
+      // 等待加载
+      text(num + substr).waitFor();
+      num++;
+      if (textEndsWith("回答错误").exists()) {
+        upload_wrong_exec();
+      }
+      // 点击确定下一题
+      let next = className("android.view.View").filter(function (l) {
+        return (l.text() == "下一题") || (l.text() == "完成");
+      });
+      next.findOne().click();
+      sleep(random(1000, 1500));
+    }
+    storage.put('dati_tiku', dati_tiku);
+  } else {
+    back();
+    ran_sleep();
+  }
+  back();
+  text("登录").waitFor();
+  ran_sleep();
+  return true;
+//}
 
 
 

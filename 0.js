@@ -681,11 +681,13 @@ function do_wenzhang() {
 function do_zhuanxiang() {
   let zhuanxiang_d = text("专项答题").findOne(4000);
   if (zhuanxiang_d != null) zhuanxiang_d.parent().click()
+    fInfo("11111111");
   else {
     var textOrder = text("排行榜").findOnce().parent();
     while (text("排行榜").exists()) {
       console.info("点击专项答题");
       textOrder.child(4).click();
+      fInfo("2222222");
       sleep(random(700, 1500));
       sleep(1000);
     }

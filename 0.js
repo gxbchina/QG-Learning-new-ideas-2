@@ -708,7 +708,7 @@ function do_zhuanxiang() {
       // 不加延迟会很卡
       sleep(500);
     }
-   
+    fInfo('22222222222')
     var clt = textMatches(/继续答题|开始答题/).find();
     if (clt.empty()) {
       fInfo("专项答题全部已作答。");

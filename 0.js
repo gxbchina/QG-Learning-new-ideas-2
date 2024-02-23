@@ -675,9 +675,9 @@ function do_wenzhang() {
 //   return true;
 // //}
 
-//********专项答题*********/
-//*专项答题中提示的层次与每日每周的不一样
- //* 专项答题出现的倒计时会影响22,23层的结构*/
+// /********专项答题*********/
+// /*专项答题中提示的层次与每日每周的不一样
+//  * 专项答题出现的倒计时会影响22,23层的结构*/
 function do_zhuanxiang() {
   let zhuanxiang_d = text("专项答题").findOne(4000);
   if (zhuanxiang_d != null) zhuanxiang_d.parent().click()
@@ -815,6 +815,8 @@ function do_zhuanxiang() {
   ran_sleep();
   return true;
 }
+
+
 
 
 

@@ -832,7 +832,7 @@ function do_meiri() {
   // 等待加载
   text("查看提示").waitFor();
   // 获取右上题号，如1 /5
-  var tihao = className("android.view.View").depth(24).findOnce(1).text();
+  var tihao = className("android.view.View").depth(11).findOnce(1).text();
   var num = Number(tihao[0]);
   var sum = Number(tihao[tihao.length - 1]);
   var substr = tihao.slice(1);

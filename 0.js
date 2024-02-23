@@ -693,7 +693,7 @@ function do_zhuanxiang() {
   fSet("title", "专项答题…");
   fClear();
   // 等待加载
-  depth(23).waitFor();
+  depth(10).waitFor();
   ran_sleep();
   let scoll = depth(21).indexInParent(1).scrollable().findOne();
   //let new_tihao = [];
@@ -705,7 +705,8 @@ function do_zhuanxiang() {
       // 不加延迟会很卡
       sleep(200);
     }
-    var clt = text("开始答题").find();
+   
+    var clt = textMatches(/继续答题|开始答题/).find();
     if (clt.empty()) {
       fInfo("专项答题全部已作答。");
       back();
@@ -723,7 +724,7 @@ function do_zhuanxiang() {
       return w.bounds().top <= device_h - 30;
     });
     //while (true) { //测试用
-    while (!text("开始答题").exists()) { //开始答题
+    while (!textMatches(/继续答题|开始答题/).exists()) { //开始答题
       // 如果到底则设置倒序为true
       if (dixian_slt.exists()) {
         //storage_user.put('zhuanxiang_dao', true); 自定义不用读取
@@ -740,7 +741,7 @@ function do_zhuanxiang() {
         sleep(300);
       }
     }
-    text("开始答题").findOne().click();
+    textMatches(/继续答题|开始答题/).findOne().click();
   }
   ran_sleep();
   // 等待加载
@@ -799,12 +800,18 @@ function do_zhuanxiang() {
       sleep(random(1000, 1500));
     }
     storage.put('dati_tiku', dati_tiku);
-  } else {
+  }
+  else {
     back();
     ran_sleep();
   }
   back();
-  text("登录").waitFor();
+  sleep(300);
+  back();
+  sleep(300);
+  back();
+  sleep(300);
+  log('回到首页')
   ran_sleep();
   return true;
 }

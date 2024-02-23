@@ -797,7 +797,7 @@ function do_zhuanxiang() {
   text("登录").waitFor();
   ran_sleep();
   return true;
-//}
+}
 
 
 

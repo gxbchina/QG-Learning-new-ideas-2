@@ -696,8 +696,8 @@ function do_zhuanxiang() {
   // 等待加载
   depth(10).waitFor();
   ran_sleep();
+  fInfo('111111111111111')
   let scoll = depth(21).indexInParent(1).scrollable().findOne();
-  log(scoll + '11111')
   //let new_tihao = [];
   // 下面是倒序答题
   if (zhuanxiang_dao) {

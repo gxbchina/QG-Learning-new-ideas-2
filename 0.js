@@ -1555,9 +1555,9 @@ function do_dingyue() {
      let total_click = 0;
      if (dingyue_dao) {
        w = fInit();
-         // fSet("title", "搜索‘上新/2023年上线’订阅…");
+         // fSet("title", "搜索‘上新/2024年上线’订阅…");
           fClear();
-          fInfo("上新/2023年上线--搜索中……");
+          fInfo("上新/2024年上线--搜索中……");
           var t_1 = 468;
           var t_2 = 1199;
           var arr = [2, 6];
@@ -1631,7 +1631,7 @@ function do_dingyue() {
      }
        if(total_click < 2 && dingyue_dao){
        fClear();
-          fInfo("继续地方-上新/2023年上线-搜索……");
+          fInfo("继续地方-上新/2024年上线-搜索……");
           press(670,167,100) ;
           sleep(random(600, 1000));
           var t_1 = 468;

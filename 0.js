@@ -744,6 +744,7 @@ function do_zhuanxiang() {
         sleep(300);
       }
     }
+    fInfo('333333333333')
     textMatches(/继续答题|开始答题/).findOne().click();
   }
   ran_sleep();

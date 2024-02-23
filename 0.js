@@ -1875,9 +1875,9 @@ function do_exec(type) {
   /******************单选题*******************/
   if (textStartsWith("单选题").exists()) {
     // 获取题目
-    let que_txt = className("android.view.View").depth(10).findOnce(1).text();
+    //let que_txt = className("android.view.View").depth(10).findOnce(1).text();
     // 上面被专项答题影响了22、23层的元素数，只能通过其他层定位
-    //let que_txt = className("android.view.View").depth(9).findOnce(1).parent().parent().child(1).text();
+    let que_txt = className("android.view.View").depth(24).findOnce(1).parent().parent().child(1).text();
     log(que_txt);
     var ans = get_ans_by_re(que_txt);
     if (ans && depth(26).text(ans).exists()) {
@@ -1939,7 +1939,7 @@ function do_exec(type) {
     // 填空题题干会被空格分割
     //let que = className("android.view.View").depth(23).findOnce(1).children();
     // 上面被专项答题影响了22、23层的元素数，只能通过其他层定位
-    let que = className("android.view.View").depth(11).findOnce(1).parent().parent().child(1).children();
+    let que = className("android.view.View").depth(24).findOnce(1).parent().parent().child(1).children();
     log(que)
     // 第一个编辑框的父元素
     let text_edit = className("android.widget.EditText").findOne().parent().children();
@@ -1974,7 +1974,7 @@ function do_exec(type) {
       //长度和空格数相等才会填充
       if (ans && word_num == ans.length) {
         // 定位填空并填入
-        depth(12).className("android.widget.EditText").findOne().setText(ans);
+        depth(25).className("android.widget.EditText").findOne().setText(ans);
       } else {
         ans = get_ans_by_ocr1().replace(/\s/g, "");
         if (!ans) {
@@ -2009,9 +2009,9 @@ function do_exec(type) {
   /******************多选题*******************/
   else if (textStartsWith("多选题").exists()) {
     // 获取题目
-    let que_txt = className("android.view.View").depth(10).findOnce(1).text();
+    //let que_txt = className("android.view.View").depth(10).findOnce(1).text();
     // 上面被专项答题影响了22、23层的元素数，只能通过其他层定位
-    //let que_txt = className("android.view.View").depth(10).findOnce(1).parent().parent().child(1).text();
+    let que_txt = className("android.view.View").depth(24).findOnce(1).parent().parent().child(1).text();
     log(que_txt);
     // 这里匹配出全部挖空
     let reg1 = /\s{3,}/g;

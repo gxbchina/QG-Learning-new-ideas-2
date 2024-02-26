@@ -1137,7 +1137,7 @@ function do_duizhan1(renshu) {
         que_img.recycle();
         break
       } else {
-        fError("未识别出题目，可能被禁止截图或无障碍失效");
+        fError("联系群主安装限制截图模块");
         img.recycle();
         que_img.recycle();
       }

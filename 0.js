@@ -371,72 +371,27 @@ function do_wenzhang() {
   //！！！！！！！！！！！！！！！！！北京这个按钮！！！！！！！！！！！！！！！
   // text("北京").findOne().parent().parent().click();
   clickSel(id("label_group_normal").text("北京"))
-  log("查找banner");
-  //let banner = className("android.support.v7.widget.RecyclerView").findOne();
-  let banner = classNameContains("RecyclerView").findOne();
-  fInfo("查找北京新闻广播");
-  //fRefocus();
-  while (banner.findOne(text("北京新闻广播").boundsInside(0, 0, device_w, device_h)) == null) {
-    banner.scrollForward();
-    sleep(500);
-  }
-  last_obj = banner.findOne(text("北京新闻广播"));
-  //   fInfo("点击北京新闻广播", text("北京新闻广播").findOne().parent().click());
-  fInfo("点击北京新闻广播：" + last_obj.parent().click());
+  sleep(500);
   fInfo("视听广播时长");
-  sleep(11500);
+  clickSel(className("android.widget.TextView").text('北京新闻广播'));
+  sleep(1500);
   back();
   fClear();
   // 下面正式刷文章
   fInfo("开始文章");
-  sleep(1500);
-  banner = classNameContains("RecyclerView").findOne();
-  //log(banner);
-  while (banner.findOne(text("北京学习平台").boundsInside(0, 0, device_w, device_h)) == null) {
-    banner.scrollBackward();
-    sleep(500);
-  }
-  sleep(1000);
-  fInfo("查找北京学习平台，尝试点击");
-  first_obj = banner.findOne(text("北京学习平台"));
-  //   while (!text("北京学习平台").findOne().parent().click()) {log("click: false");}
-  //   log("click: true");
-  //   real_click(text("北京学习平台").findOne().parent());
-  real_click(first_obj.parent());
-  log("等待加载");
+  clickSel(className("android.widget.TextView").text('北京学习平台'));  
+  fInfo("等待加载");
   sleep(1000);
   text("新思想扎根京华").waitFor();
   sleep(1000);
   let swipe_y = text("新思想扎根京华").findOne().parent().parent().bounds().bottom;
   log("识别出顶部：", swipe_y);
   fRefocus();
-  let listview = className("android.widget.ListView").depth(3).findOne();
-  // 先判断是否有可刷文章，没有则停止脚本
-  //while (!id("general_card_image_id").findOne(1000)) {listview.scrollForward();}
+  let listview = className("androidx.recyclerview.widget.RecyclerView").findOne();
   for (i = 0; i < 2; i++) {
     listview.scrollForward();
     sleep(500);
   }
-  // // 自定义没有刷过的文章筛选器
-  // let wen_box_slt = className("android.view.ViewGroup").depth(5).filter(function (l) {
-  //   let title = l.findOne(idContains("general_card_title_id"));
-  //   let image = l.findOne(idContains("general_card_image_id"));
-  //   //let pic_num = l.findOne(idContains("st_feeds_card_mask_pic_num"));
-  //   if (title && image) {
-  //     return old_wen.indexOf(title.text()) == -1 && title.text().indexOf("【专题】") == -1;
-  //   }
-  //   return false;
-  // });
-  // log("查找文章");
-  // //while (!idContains("general_card_image_id").findOne(500)) {
-  // while (!wen_box_slt.findOne(1000)) {
-  //   log('执行在这')
-  //   listview.scrollForward();
-  //   //sleep(500);
-  // }
-  
-  log(old_wen)
-  log(old_wen)
   let wen_box_slt = className("android.view.ViewGroup").filter(function (l) {
     let title = l.findOne(idContains("general_card_title_id"));
     let image = l.findOne(idContains("general_card_image_id"));

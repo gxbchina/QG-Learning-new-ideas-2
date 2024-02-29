@@ -348,7 +348,6 @@ function do_wenzhang() {
   sleep(500);
   log("切换北京");
   sleep(500);
-  //！！！！！！！！！！！！！！！！！北京这个按钮！！！！！！！！！！！！！！！
   // text("北京").findOne().parent().parent().click();
   clickSel(id("label_group_normal").text("北京"))
   sleep(500);
@@ -367,7 +366,7 @@ function do_wenzhang() {
   let swipe_y = text("新思想扎根京华").findOne().parent().parent().bounds().bottom;
   log("识别出顶部：", swipe_y);
   fRefocus();
-  let listview = className("androidx.recyclerview.widget.RecyclerView").findOne();
+  let listview = className("android.widget.ListView").findOne();
   for (i = 0; i < 2; i++) {
     listview.scrollForward();
     sleep(500);

@@ -371,7 +371,10 @@ function do_wenzhang() {
     listview.scrollForward();
     sleep(500);
   }
-  let wen_box_slt = className("android.view.ViewGroup").filter(function (l) {
+  //晚上12点变化
+  let wen_box_slt = className("androidx.recyclerview.widget.RecyclerView").filter(function (l) {
+  //白天几点未知  
+  //let wen_box_slt = className("android.view.ViewGroup").filter(function (l) {
     let title = l.findOne(idContains("general_card_title_id"));
     let image = l.findOne(idContains("general_card_image_id"));
     let pic_num = l.findOne(idContains("st_feeds_card_mask_pic_num"));
@@ -1778,11 +1781,12 @@ function do_bendi() {
   if (text("立即切换").exists()) {
     text("取消").findOne(3000).click();
   }
-  //let banner = className("android.support.v7.widget.RecyclerView").findOne();
-  let banner = classNameContains("RecyclerView").findOne();
-  banner.findOne(text("北京学习平台"));
-  //let txt = banner.child(0).child(1).text();
-  banner.child(0).click();
+  // //let banner = className("android.support.v7.widget.RecyclerView").findOne();
+  // let banner = classNameContains("RecyclerView").findOne();
+  // banner.findOne(text("北京学习平台"));
+  // //let txt = banner.child(0).child(1).text();
+  // banner.child(0).click();
+  clickSel(className("android.widget.TextView").text('北京学习平台'));  
   sleep(1500);
   back();
   ran_sleep();

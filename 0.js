@@ -366,15 +366,16 @@ function do_wenzhang() {
   let swipe_y = text("新思想扎根京华").findOne().parent().parent().bounds().bottom;
   log("识别出顶部：", swipe_y);
   fRefocus();
-  let listview = className("android.widget.ListView").findOne();
+  //晚12点后
+  let listview = className("androidx.recyclerview.widget.RecyclerView").findOne();
+  //白天未知
+  //let listview = className("android.widget.ListView").findOne();
   for (i = 0; i < 2; i++) {
     listview.scrollForward();
     sleep(500);
   }
-  //晚上12点变化
-  let wen_box_slt = className("androidx.recyclerview.widget.RecyclerView").filter(function (l) {
-  //白天几点未知  
-  //let wen_box_slt = className("android.view.ViewGroup").filter(function (l) {
+
+  let wen_box_slt = className("android.view.ViewGroup").filter(function (l) {
     let title = l.findOne(idContains("general_card_title_id"));
     let image = l.findOne(idContains("general_card_image_id"));
     let pic_num = l.findOne(idContains("st_feeds_card_mask_pic_num"));

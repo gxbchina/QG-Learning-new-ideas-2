@@ -353,7 +353,7 @@ function do_wenzhang() {
   sleep(500);
   fInfo("视听广播时长");
   clickSel(className("android.widget.TextView").text('北京新闻广播'));
-  sleep(1500);
+  sleep(8000);
   back();
   fClear();
   // 下面正式刷文章
@@ -364,7 +364,7 @@ function do_wenzhang() {
   text("新思想扎根京华").waitFor();
   sleep(2000);
   let swipe_y = text("新思想扎根京华").findOne().parent().parent().bounds().bottom;
-  fInfo("识别出顶部：", swipe_y);
+  log("识别出顶部：", swipe_y);
   fRefocus();
   //晚12点后
   //let listview = className("androidx.recyclerview.widget.RecyclerView").findOne();

@@ -370,9 +370,8 @@ function do_wenzhang() {
   //晚12点后
   //let listview = className("androidx.recyclerview.widget.RecyclerView").findOne();
   //白天未知
-  //let listview = className("android.widget.ListView").findOne();
-  //包名深度定位
-  listview = packageName("cn.xuexi.android").depth("17").findOne();
+  let listview = className("android.widget.ListView").findOne();
+  fInfo("1111正常");
   for (i = 0; i < 2; i++) {
     listview.scrollForward();
     sleep(500);

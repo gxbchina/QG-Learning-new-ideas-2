@@ -405,7 +405,6 @@ function do_wenzhang() {
   while (true) {
     let title = wen_box.findOne(idContains("general_card_title_id")).text();
     old_wen.push(title);
-    log(old_wen)
   storage_user.put("old_wen_list", old_wen);
     if (old_wen.length > 100) {
       old_wen.shift();

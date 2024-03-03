@@ -364,12 +364,12 @@ function do_wenzhang() {
   text("新思想扎根京华").waitFor();
   sleep(2000);
   let swipe_y = text("新思想扎根京华").findOne().parent().parent().bounds().bottom;
-  log("识别出顶部：", swipe_y);
+  fInfo("识别出顶部：", swipe_y);
   fRefocus();
   //晚12点后
-  //let listview = className("androidx.recyclerview.widget.RecyclerView").findOne();
+  let listview = className("androidx.recyclerview.widget.RecyclerView").findOne();
   //白天未知
-  let listview = className("android.widget.ListView").depth(17).findOne();
+  //let listview = className("android.widget.ListView").depth(17).findOne();
   for (i = 0; i < 2; i++) {
     listview.scrollForward();
     sleep(500);
@@ -2920,7 +2920,7 @@ function xxqg(userinfo) {
     if (true == wenzhang) {
       let jifen_list = className("android.widget.ListView").findOne();
       if ("已完成" != jifen_list.findOne(textEndsWith("选读文章")).parent().child(4).text()) {
-        console.verbose("无障碍服务：" + auto.service);
+        // console.verbose("无障碍服务：" + auto.service);
         toastLog("开始文章次数与时长");
         do_wenzhang();
       } else {

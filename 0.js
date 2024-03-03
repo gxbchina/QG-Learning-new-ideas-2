@@ -368,9 +368,9 @@ function do_wenzhang() {
   fRefocus();
   fInfo("看到1111证明正常否者异常");
   //晚12点后
-  let listview = className("androidx.recyclerview.widget.RecyclerView").findOne();
+  //let listview = className("androidx.recyclerview.widget.RecyclerView").findOne();
   //白天未知
-  //let listview = className("android.widget.ListView").findOne();
+  let listview = className("android.widget.ListView").depth(17).findOne();
   //let listview = rowCount("14").depth("17").findOne();
   fInfo("1111正常");
   for (i = 0; i < 2; i++) {

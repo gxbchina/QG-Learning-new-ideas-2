@@ -360,9 +360,9 @@ function do_wenzhang() {
   fInfo("开始文章");
   clickSel(className("android.widget.TextView").text('北京学习平台'));  
   fInfo("等待加载");
-  sleep(1000);
+  sleep(2000);
   text("新思想扎根京华").waitFor();
-  sleep(1000);
+  sleep(2000);
   let swipe_y = text("新思想扎根京华").findOne().parent().parent().bounds().bottom;
   log("识别出顶部：", swipe_y);
   fRefocus();

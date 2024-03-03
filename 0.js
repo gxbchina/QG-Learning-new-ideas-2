@@ -389,11 +389,10 @@ function do_wenzhang() {
   //   sleep(500);
   // }
     while (!wen_box_slt.findOne(1000)) {
-    log('执行在这')
     listview.scrollForward();
     sleep(500);
   }
-  log("找到文章");
+  fInfo("找到文章");
   // 下面那句会定位到新思想的文章，不能加载过新思想
   let wen_box = wen_box_slt.findOne();
   // 先做5次

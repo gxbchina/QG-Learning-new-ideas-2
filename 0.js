@@ -367,9 +367,9 @@ function do_wenzhang() {
   log("识别出顶部：", swipe_y);
   fRefocus();
   //晚12点后
-  //let listview = className("androidx.recyclerview.widget.RecyclerView").findOne();
+  let listview = className("androidx.recyclerview.widget.RecyclerView").findOne();
   //白天未知
-  let listview = className("android.widget.ListView").findOne();
+  //let listview = className("android.widget.ListView").findOne();
   for (i = 0; i < 2; i++) {
     listview.scrollForward();
     sleep(500);

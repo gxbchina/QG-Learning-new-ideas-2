@@ -366,12 +366,13 @@ function do_wenzhang() {
   let swipe_y = text("新思想扎根京华").findOne().parent().parent().bounds().bottom;
   log("识别出顶部：", swipe_y);
   fRefocus();
+  fInfo("看到1111证明正常否者异常");
   //晚12点后
   //let listview = className("androidx.recyclerview.widget.RecyclerView").findOne();
   //白天未知
   //let listview = className("android.widget.ListView").findOne();
   //包名深度定位
-  let listview = packageName("cn.xuexi.android").depth("17").findOne();
+  listview = packageName("cn.xuexi.android").depth("17").findOne();
   for (i = 0; i < 2; i++) {
     listview.scrollForward();
     sleep(500);

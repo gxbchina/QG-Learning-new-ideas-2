@@ -369,7 +369,9 @@ function do_wenzhang() {
   //晚12点后
   //let listview = className("androidx.recyclerview.widget.RecyclerView").findOne();
   //白天未知
-  let listview = className("android.widget.ListView").findOne();
+  //let listview = className("android.widget.ListView").findOne();
+  //包名深度定位
+  let listview = packageName("cn.xuexi.android").depth("17").findOne();
   for (i = 0; i < 2; i++) {
     listview.scrollForward();
     sleep(500);
@@ -2643,14 +2645,6 @@ function login(username, pwd) {
   }
 }
 
-// function refind_jifen() {
-//   className("android.webkit.WebView").scrollable().findOne().scrollForward();
-//   var a = className("android.widget.ListView").filter(function (b) {
-//     return 9 <= b.rowCount()//9是积分条的数量，rowCount()用来获取行数
-//   }).findOne();
-//   21 == a.depth() ? (jifen_flag = "old", fInfo("检测为旧版界面")) : 23 == a.depth() && (jifen_flag = 0 < a.child(0).child(3).childCount() ? "new1" : "new2", fInfo("检测为新版界面"));
-//   return a//2.41版本a.child(0).child(3).childCount为3，返回的jifen_flag为new1
-// }
 
 function entry_jifen_project(a) {
   let jifen_list = className("android.widget.ListView").findOne();

@@ -361,15 +361,12 @@ function do_wenzhang() {
   clickSel(className("android.widget.TextView").text('北京学习平台'));  
   fInfo("等待加载");
   sleep(2000);
-  // text("新思想扎根京华").waitFor();
-  // sleep(2000);
-  // let swipe_y = text("新思想扎根京华").findOne().parent().parent().bounds().bottom;
-  // log("识别出顶部：", swipe_y);
+  text("新思想扎根京华").waitFor();
+  sleep(2000);
+  let swipe_y = text("新思想扎根京华").findOne().parent().parent().bounds().bottom;
+  log("识别出顶部：", swipe_y);
   fRefocus();
-  //晚12点后
-  //let listview = className("androidx.recyclerview.widget.RecyclerView").findOne();
-  //白天未知
-  let listview = className("android.widget.ListView").depth(17).findOne();
+  let listview = className("android.widget.ListView").findOne();
   for (i = 0; i < 2; i++) {
     listview.scrollForward();
     sleep(500);

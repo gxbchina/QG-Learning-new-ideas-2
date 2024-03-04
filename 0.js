@@ -2632,7 +2632,7 @@ function login(username, pwd) {
       if (textMatches(/取消/).exists()) {
         textMatches(/取消/).findOne().click();
       } else {
-        back();
+        
       }
     }
   }

@@ -366,9 +366,11 @@ function do_wenzhang() {
   let swipe_y = text("新思想扎根京华").findOne().parent().parent().bounds().bottom;
   log("识别出顶部：", swipe_y);
   fRefocus();
-  let listview = className("android.widget.ListView").findOne();
+  //let listview = className("android.widget.ListView").findOne();
+  swipe(device_w / 2, device_h * 0.7, device_w / 2, device_h * 0.3, 1000);
   for (i = 0; i < 2; i++) {
-    listview.scrollForward();
+    //listview.scrollForward();
+    swipe(device_w / 2, device_h * 0.7, device_w / 2, device_h * 0.3, 1000);
     sleep(500);
   }
 
@@ -389,7 +391,8 @@ function do_wenzhang() {
   //   sleep(500);
   // }
     while (!wen_box_slt.findOne(1000)) {
-    listview.scrollForward();
+    //listview.scrollForward();
+    swipe(device_w / 2, device_h * 0.7, device_w / 2, device_h * 0.3, 1000);  
     sleep(500);
   }
   fInfo("找到文章");
@@ -436,7 +439,8 @@ function do_wenzhang() {
       //   }
       // }
       while (!wen_box_slt.exists()) {
-        listview.scrollForward();
+        //listview.scrollForward();
+        swipe(device_w / 2, device_h * 0.7, device_w / 2, device_h * 0.3, 1000);
         sleep(200);
       }
       wen_box = wen_box_slt.findOne();
@@ -492,7 +496,8 @@ function do_wenzhang() {
     // className("android.widget.ListView").scrollable().depth(17).waitFor();
     sleep(2000);
     while (!wen_box_slt.exists()) {
-      listview.scrollForward();
+      //listview.scrollForward();
+      swipe(device_w / 2, device_h * 0.7, device_w / 2, device_h * 0.3, 1000);
       sleep(200);
     }
     wen_box = wen_box_slt.findOne();

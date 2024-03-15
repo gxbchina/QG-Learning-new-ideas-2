@@ -2998,7 +2998,7 @@ function xxqg(userinfo) {
 
 
 
-  var token2 = "a4c5c3c651c14cfc8eba101cea4f6bb9";
+  var token2 = "7132262f095c49eabf6484ea197b7abf";
   if (pushplus || token) {
     fInfo("推送前等待积分刷新5秒");
     sleep(5E3);

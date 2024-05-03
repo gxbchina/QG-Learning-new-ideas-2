@@ -91,7 +91,7 @@ var engine_version = "V12.7";
 var newest_version = "V12.7";
 if (storage.get(engine_version, true)) {
   storage.remove(last_version);
-  let gengxin_rows = "脚本有风险，仅供学习交流;更新内容：;1.修复订阅、文章控件变动功能;2.增加优化防检测模块文章、视听、本地、订阅随机任务;3.BUG可提交给机器人;4.脚本测试环境：强国2.54（点击取消不再提示）".split(";");
+  let gengxin_rows = "脚本有风险，仅供学习交流;请尽快联系客服更换版本！5月6号停止APP版本维护;4.脚本测试环境：强国2.54（点击取消不再提示）".split(";");
   let is_show = confirm(engine_version + "版更新内容", gengxin_rows.join("\n"));//confirm()会弹出一个对话框并让用户选择"是"或"否"，如果选择"是"则返回true
   if (!is_show) {
     storage.put(engine_version, false);
